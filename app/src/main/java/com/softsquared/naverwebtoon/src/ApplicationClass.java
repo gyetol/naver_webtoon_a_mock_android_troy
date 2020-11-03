@@ -19,8 +19,11 @@ public class ApplicationClass extends Application {
     public static MediaType MEDIA_TYPE_JSON = MediaType.parse("application/json; charset=uft-8");
     public static MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
 
-    //실서버 주소
-     public static String BASE_URL = "https:// ";
+    //테스트서버 주소
+     public static String BASE_URL = "https://dev.jenny-softsquared.site/";
+
+     //실서버 주소
+    //public static String BASE_URL = "https://prod.jenny-softsquared.site/";
 
     public static SharedPreferences sSharedPreferences = null;
 
