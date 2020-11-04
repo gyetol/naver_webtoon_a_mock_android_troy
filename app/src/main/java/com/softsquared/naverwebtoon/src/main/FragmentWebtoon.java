@@ -1,17 +1,23 @@
 package com.softsquared.naverwebtoon.src.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
+import com.google.android.material.tabs.TabLayout;
 import com.softsquared.naverwebtoon.R;
 
 import java.util.Timer;
@@ -28,9 +34,18 @@ public class FragmentWebtoon extends Fragment  {
     final long DELAY_MS = 500;
     final long PERIOD_MS = 3000;
 
+    //tablayout + viewpager
+    private TabLayout mTabLayout;
+    private Context mContext;
+    private ViewPager mViewPager;
+    private ContentsPagerAdapter mContentPagerAdapter;
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         View view = inflater.inflate(R.layout.fragment_webtoon, container, false);
         viewPager = (ViewPager)(view.findViewById(R.id.viewPager));
         pagerAdapter = new ImageViewPagerAdapter(getActivity());
@@ -76,6 +91,48 @@ public class FragmentWebtoon extends Fragment  {
             }
         },DELAY_MS,PERIOD_MS);
 
+        //tablayout
+        mContext = getContext(); //getApplicationContext를 못받네
+
+        mTabLayout = (TabLayout)(view.findViewById(R.id.webtoon_tablayout));
+
+        mTabLayout.addTab(mTabLayout.newTab().setText("신작"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("월"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("화"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("수"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("목"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("금"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("토"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("일"));
+        mTabLayout.addTab(mTabLayout.newTab().setText("완결"));
+
+        mViewPager = (ViewPager)(view.findViewById(R.id.viewpager_weekday));
+        mContentPagerAdapter = new ContentsPagerAdapter(
+                getChildFragmentManager(),mTabLayout.getTabCount());
+        mViewPager.setAdapter(mContentPagerAdapter);
+
+        mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+                Log.d("haha","아이템번호: "+tab.getPosition());
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+                mViewPager.setCurrentItem(tab.getPosition());
+            }
+        });
+
+
+
         return view;
     }
 
@@ -85,5 +142,11 @@ public class FragmentWebtoon extends Fragment  {
         super.onCreate(savedInstanceState);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
 
+
+
+    }
 }
