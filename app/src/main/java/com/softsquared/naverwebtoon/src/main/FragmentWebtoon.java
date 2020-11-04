@@ -15,11 +15,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.softsquared.naverwebtoon.R;
+import com.softsquared.naverwebtoon.src.main.models.WebtoonResponse;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.zip.Inflater;
@@ -39,6 +44,17 @@ public class FragmentWebtoon extends Fragment  {
     private Context mContext;
     private ViewPager mViewPager;
     private ContentsPagerAdapter mContentPagerAdapter;
+
+
+    //recyclerview
+    RecyclerView recyclerView;
+    WebtoonRecyclerViewAdapter adapter;
+    GridLayoutManager gridLayoutManager;
+    ArrayList<WebtoonResponse> list = new ArrayList<WebtoonResponse>(){
+        {
+
+        }
+    };
 
 
 
@@ -91,10 +107,30 @@ public class FragmentWebtoon extends Fragment  {
             }
         },DELAY_MS,PERIOD_MS);
 
+
+        //recyclerview
+        List<Fragment> listFragments = new ArrayList<>();
+        listFragments.add(new FragmentWebtoonFragmentMonday());
+        listFragments.add(new FragmentWebtoonFragmentTuesday());
+
+      /*  for(int i =0 ; i<10; i++) {
+            list.add(new WebtoonResponse("웹툰이오",R.drawable.webtoon_viewpager_1+i));
+        }*/
+
+        recyclerView = (RecyclerView)view.findViewById(R.id.grid_recyclerview);
+        adapter = new WebtoonRecyclerViewAdapter(getActivity(),list);
+        gridLayoutManager = new GridLayoutManager(getActivity(),3);
+
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(adapter);
+
+
+
+
         //tablayout
         mContext = getContext(); //getApplicationContext를 못받네
 
-        mTabLayout = (TabLayout)(view.findViewById(R.id.webtoon_tablayout));
+        mTabLayout = (TabLayout)view.findViewById(R.id.webtoon_tablayout);
 
         mTabLayout.addTab(mTabLayout.newTab().setText("신작"));
         mTabLayout.addTab(mTabLayout.newTab().setText("월"));
@@ -106,7 +142,7 @@ public class FragmentWebtoon extends Fragment  {
         mTabLayout.addTab(mTabLayout.newTab().setText("일"));
         mTabLayout.addTab(mTabLayout.newTab().setText("완결"));
 
-        mViewPager = (ViewPager)(view.findViewById(R.id.viewpager_weekday));
+        mViewPager = (ViewPager)view.findViewById(R.id.viewpager_weekday);
         mContentPagerAdapter = new ContentsPagerAdapter(
                 getChildFragmentManager(),mTabLayout.getTabCount());
         mViewPager.setAdapter(mContentPagerAdapter);
@@ -116,6 +152,7 @@ public class FragmentWebtoon extends Fragment  {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
+                mContentPagerAdapter.notifyDataSetChanged();
                 Log.d("haha","아이템번호: "+tab.getPosition());
 
             }
@@ -145,8 +182,19 @@ public class FragmentWebtoon extends Fragment  {
     @Override
     public void onResume() {
         super.onResume();
-
-
-
     }
+
+   /* private View createTabView(String tabName){
+        View tabView = LayoutInflater.from(mContext).inflate(R.layout.custom_tab,null);
+        TextView txt_name = (TextView)tabView.findViewById(R.id.txt_name);
+        txt_name.setText(tabName);
+
+        return tabView;
+    }*/
+
+    /*@Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        mContext=context;
+    }*/
 }

@@ -12,10 +12,16 @@ import androidx.fragment.app.Fragment;
 import com.softsquared.naverwebtoon.R;
 
 public class FragmentWebtoonFragmentSunday extends Fragment {
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_webtoon_fragment_sunday,container,false);
+        View view = inflater.inflate(R.layout.fragment_webtoon_fragment_sunday,null);
 
         return view;
     }

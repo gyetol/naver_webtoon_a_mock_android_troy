@@ -16,7 +16,7 @@ public class FragmentWebtoonFragmentWednesday extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_webtoon_fragment_wednesday,container,false);
+        View view = inflater.inflate(R.layout.fragment_webtoon_fragment_wednesday,null);
 
         return view;
     }

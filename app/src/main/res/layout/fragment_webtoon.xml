@@ -55,6 +55,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
+
                     <com.google.android.material.tabs.TabLayout
                         android:id="@+id/webtoon_tablayout"
                         android:layout_width="432dp"
@@ -67,16 +68,25 @@
                         app:tabBackground="@drawable/tab_background"
                         />
 
-                    <androidx.viewpager.widget.ViewPager
-                        android:id="@+id/viewpager_weekday"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
-
                 </LinearLayout>
             </HorizontalScrollView>
 
 
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/viewpager_weekday"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                />
 
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/grid_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+
+            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </com.amar.library.ui.StickyScrollView>
 
