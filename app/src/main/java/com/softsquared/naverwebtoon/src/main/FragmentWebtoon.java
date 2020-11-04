@@ -108,27 +108,10 @@ public class FragmentWebtoon extends Fragment  {
         },DELAY_MS,PERIOD_MS);
 
 
-        //recyclerview
-        List<Fragment> listFragments = new ArrayList<>();
-        listFragments.add(new FragmentWebtoonFragmentMonday());
-        listFragments.add(new FragmentWebtoonFragmentTuesday());
-
-      /*  for(int i =0 ; i<10; i++) {
-            list.add(new WebtoonResponse("웹툰이오",R.drawable.webtoon_viewpager_1+i));
-        }*/
-
-        recyclerView = (RecyclerView)view.findViewById(R.id.grid_recyclerview);
-        adapter = new WebtoonRecyclerViewAdapter(getActivity(),list);
-        gridLayoutManager = new GridLayoutManager(getActivity(),3);
-
-        recyclerView.setLayoutManager(gridLayoutManager);
-        recyclerView.setAdapter(adapter);
-
 
 
 
         //tablayout
-        mContext = getContext(); //getApplicationContext를 못받네
 
         mTabLayout = (TabLayout)view.findViewById(R.id.webtoon_tablayout);
 
@@ -147,8 +130,9 @@ public class FragmentWebtoon extends Fragment  {
                 getChildFragmentManager(),mTabLayout.getTabCount());
         mViewPager.setAdapter(mContentPagerAdapter);
 
+       mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+       /* mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
@@ -166,7 +150,7 @@ public class FragmentWebtoon extends Fragment  {
             public void onTabReselected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
             }
-        });
+        });*/
 
 
 

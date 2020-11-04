@@ -9,14 +9,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
 import com.softsquared.naverwebtoon.R;
 
-public class ContentsPagerAdapter extends FragmentStatePagerAdapter {
-    private int mPageCount;
-    private Context mContext=null;
+public class ContentsPagerAdapter extends FragmentPagerAdapter {
+    int mPageCount; //탭의 개수
 
     public ContentsPagerAdapter(@NonNull FragmentManager fm, int mPageCount) {
         super(fm);

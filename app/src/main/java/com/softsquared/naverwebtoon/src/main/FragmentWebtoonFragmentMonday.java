@@ -20,7 +20,7 @@ import java.util.ArrayList;
 
 public class FragmentWebtoonFragmentMonday extends Fragment {
 
-    private ArrayList<WebtoonResponse> webtoonResponses = new ArrayList<>();
+    public FragmentWebtoonFragmentMonday(){}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,28 +30,10 @@ public class FragmentWebtoonFragmentMonday extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_webtoon_fragment_monday,null);
-
-        initDataset();
-
-        Context context = view.getContext();
-        RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.grid_recyclerview);
-        recyclerView.setHasFixedSize(true);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(context);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(layoutManager);
-
-        WebtoonRecyclerViewAdapter adapter = new WebtoonRecyclerViewAdapter(context,webtoonResponses);
-        recyclerView.setAdapter(adapter);
+        View view = inflater.inflate(R.layout.fragment_webtoon_fragment_monday,container,false);
 
         return view;
     }
 
-    public void initDataset(){
-        webtoonResponses.clear();
-        webtoonResponses.add(new WebtoonResponse("아이유","http://image_url.jpg","아이유다"));
-        webtoonResponses.add(new WebtoonResponse("수지","http://image_url.jpg","수지다"));
-        webtoonResponses.add(new WebtoonResponse("박보영","http://image_url.jpg","박보영이다"));
-    }
+
 }

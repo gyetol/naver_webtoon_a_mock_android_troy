@@ -13,6 +13,8 @@ import com.softsquared.naverwebtoon.R;
 
 public class FragmentWebtoonFragmentEnd extends Fragment {
 
+    public FragmentWebtoonFragmentEnd(){}
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,7 +23,7 @@ public class FragmentWebtoonFragmentEnd extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_webtoon_fragment_end,null);
+        View view = inflater.inflate(R.layout.fragment_webtoon_fragment_end,container,false);
 
         return view;
     }

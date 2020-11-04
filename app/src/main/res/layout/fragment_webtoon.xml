@@ -44,13 +44,8 @@
             </FrameLayout>
 
 
-            <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/titleLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
                 <LinearLayout
-
+                    android:id="@+id/titleLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -68,25 +63,17 @@
                         app:tabBackground="@drawable/tab_background"
                         />
 
+
                 </LinearLayout>
-            </HorizontalScrollView>
-
-
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewpager_weekday"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="400dp"
                 />
 
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/grid_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
 
 
-            </androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
     </com.amar.library.ui.StickyScrollView>
 
