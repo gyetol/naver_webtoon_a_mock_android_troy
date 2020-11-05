@@ -1,26 +1,54 @@
+
 package com.softsquared.naverwebtoon.src.main.models;
+import java.util.List;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class WebtoonResponse {
 
-     String name;
-     String photo;
-     String summary;
+    @SerializedName("result")
+    @Expose
+    private List<Result> result = null;
+    @SerializedName("isSuccess")
+    @Expose
+    private Boolean isSuccess;
+    @SerializedName("code")
+    @Expose
+    private Integer code;
+    @SerializedName("message")
+    @Expose
+    private String message;
 
-    public WebtoonResponse(String name, String photo, String summary) {
-        this.name = name;
-        this.photo = photo;
-        this.summary = summary;
+    public List<Result> getResult() {
+        return result;
     }
 
-    public String getName() {
-        return name;
+    public void setResult(List<Result> result) {
+        this.result = result;
     }
 
-    public String getPhoto() {
-        return photo;
+    public Boolean getIsSuccess() {
+        return isSuccess;
     }
 
-    public String getSummary() {
-        return summary;
+    public void setIsSuccess(Boolean isSuccess) {
+        this.isSuccess = isSuccess;
     }
+
+    public Integer getCode() {
+        return code;
+    }
+
+    public void setCode(Integer code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
 }

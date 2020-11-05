@@ -18,20 +18,22 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.softsquared.naverwebtoon.R;
+import com.softsquared.naverwebtoon.src.main.models.Result;
 import com.softsquared.naverwebtoon.src.main.models.WebtoonResponse;
 
 import java.util.ArrayList;
 
 public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecyclerViewAdapter.MyViewHolder> {
 
-    ArrayList<WebtoonResponse> list;
+    ArrayList<Result> list;
     Context mContext;
     LayoutInflater mInflater;
 
-    public WebtoonRecyclerViewAdapter(ArrayList<WebtoonResponse> list, Context context) {
+    public WebtoonRecyclerViewAdapter(ArrayList<Result> list, Context context) {
         this.list = list;
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
+
     }
 
     @NonNull
@@ -41,6 +43,7 @@ public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecy
         //View view = LayoutInflater.from(context).inflate(R.layout.recyclerview_row,null);
 
         View view = mInflater.inflate(R.layout.recyclerview_row,parent,false);
+        Log.d("haha","왜 터져3");
 
         return new MyViewHolder(view);
     }
@@ -49,9 +52,9 @@ public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecy
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position){
         Log.d("haha","왜 안돼2");
 
-        String url = list.get(position).getPhoto();
+        String url = list.get(position).getThumbnail();
         Log.d("haha","왜 안돼");
-        holder.name.setText(list.get(position).getName());
+        holder.name.setText(list.get(position).getTitle());
 
         Glide.with(mContext)
                 .load(url)
@@ -59,7 +62,7 @@ public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecy
                 .crossFade()
                 .into(holder.imageView);
 
-        holder.summary.setText(list.get(position).getSummary());
+        holder.summary.setText(list.get(position).getAuthor());
 
     }
 

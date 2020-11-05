@@ -43,9 +43,12 @@
 
             </FrameLayout>
 
+            <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/titleLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <LinearLayout
-                    android:id="@+id/titleLayout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
@@ -65,12 +68,13 @@
 
 
                 </LinearLayout>
+            </HorizontalScrollView>
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewpager_weekday"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="700dp"
                 />
-
+            
 
 
 

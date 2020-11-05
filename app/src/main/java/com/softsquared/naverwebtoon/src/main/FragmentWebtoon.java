@@ -21,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.softsquared.naverwebtoon.R;
+import com.softsquared.naverwebtoon.src.main.interfaces.MainActivityView;
 import com.softsquared.naverwebtoon.src.main.models.WebtoonResponse;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.zip.Inflater;
 
-public class FragmentWebtoon extends Fragment  {
+public class FragmentWebtoon extends Fragment {
 
     private ViewPager viewPager;
     private ImageViewPagerAdapter pagerAdapter;
@@ -125,14 +126,22 @@ public class FragmentWebtoon extends Fragment  {
         mTabLayout.addTab(mTabLayout.newTab().setText("일"));
         mTabLayout.addTab(mTabLayout.newTab().setText("완결"));
 
+        //recycler
+        //recyclerView = (RecyclerView)view.findViewById(R.id.grid_recyclerview);
+        //adapter = new WebtoonRecyclerViewAdapter(list,getContext());
+
+       // gridLayoutManager = new GridLayoutManager(getContext(), 6);
+
+
         mViewPager = (ViewPager)view.findViewById(R.id.viewpager_weekday);
         mContentPagerAdapter = new ContentsPagerAdapter(
                 getChildFragmentManager(),mTabLayout.getTabCount());
         mViewPager.setAdapter(mContentPagerAdapter);
 
-       mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+       //mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-       /* mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        mTabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
@@ -150,7 +159,7 @@ public class FragmentWebtoon extends Fragment  {
             public void onTabReselected(TabLayout.Tab tab) {
                 mViewPager.setCurrentItem(tab.getPosition());
             }
-        });*/
+        });
 
 
 

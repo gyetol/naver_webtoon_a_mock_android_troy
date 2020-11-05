@@ -20,7 +20,7 @@ public class ApplicationClass extends Application {
     public static MediaType MEDIA_TYPE_JPEG = MediaType.parse("image/jpeg");
 
     //테스트서버 주소
-     public static String BASE_URL = "https://dev.jenny-softsquared.site/";
+     public static String BASE_URL = "https://dev.jenny-softsquared.site"; // / 이거 붙이시면
 
      //실서버 주소
     //public static String BASE_URL = "https://prod.jenny-softsquared.site/";
@@ -38,7 +38,9 @@ public class ApplicationClass extends Application {
 
     // Retrofit 인스턴스
     public static Retrofit retrofit;
+//1차 피드백 받으셨나요? 오늘 6시에 1차잇습니다! 아 알겠습니다 .
 
+    // 얘가 왜 onCreate 실행이; 음..
     @Override
     public void onCreate() {
         super.onCreate();
