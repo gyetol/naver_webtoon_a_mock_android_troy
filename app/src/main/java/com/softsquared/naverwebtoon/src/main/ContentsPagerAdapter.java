@@ -1,19 +1,9 @@
 package com.softsquared.naverwebtoon.src.main;
 
-import android.content.Context;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentStatePagerAdapter;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-
-import com.softsquared.naverwebtoon.R;
 
 public class ContentsPagerAdapter extends FragmentPagerAdapter {
     int mPageCount; //탭의 개수
@@ -24,11 +14,10 @@ public class ContentsPagerAdapter extends FragmentPagerAdapter {
     }
 
 
-
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        switch (position){
+        switch (position) {
             case 0:
                 FragmentWebtoonFragmentNew fragmentWebtoonFragmentNew = new FragmentWebtoonFragmentNew();
                 return fragmentWebtoonFragmentNew;

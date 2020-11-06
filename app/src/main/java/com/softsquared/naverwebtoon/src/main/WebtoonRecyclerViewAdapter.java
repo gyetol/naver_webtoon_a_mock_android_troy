@@ -43,17 +43,14 @@ public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecy
         //View view = LayoutInflater.from(context).inflate(R.layout.recyclerview_row,null);
 
         View view = mInflater.inflate(R.layout.recyclerview_row,parent,false);
-        Log.d("haha","왜 터져3");
 
         return new MyViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, final int position){
-        Log.d("haha","왜 안돼2");
 
         String url = list.get(position).getThumbnail();
-        Log.d("haha","왜 안돼");
         holder.name.setText(list.get(position).getTitle());
 
         Glide.with(mContext)

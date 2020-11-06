@@ -7,28 +7,22 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 import com.softsquared.naverwebtoon.R;
-import com.softsquared.naverwebtoon.src.main.interfaces.MainActivityView;
 import com.softsquared.naverwebtoon.src.main.models.WebtoonResponse;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.zip.Inflater;
 
 public class FragmentWebtoon extends Fragment {
 
@@ -45,17 +39,6 @@ public class FragmentWebtoon extends Fragment {
     private Context mContext;
     private ViewPager mViewPager;
     private ContentsPagerAdapter mContentPagerAdapter;
-
-
-    //recyclerview
-    RecyclerView recyclerView;
-    WebtoonRecyclerViewAdapter adapter;
-    GridLayoutManager gridLayoutManager;
-    ArrayList<WebtoonResponse> list = new ArrayList<WebtoonResponse>(){
-        {
-
-        }
-    };
 
 
 
@@ -125,12 +108,6 @@ public class FragmentWebtoon extends Fragment {
         mTabLayout.addTab(mTabLayout.newTab().setText("토"));
         mTabLayout.addTab(mTabLayout.newTab().setText("일"));
         mTabLayout.addTab(mTabLayout.newTab().setText("완결"));
-
-        //recycler
-        //recyclerView = (RecyclerView)view.findViewById(R.id.grid_recyclerview);
-        //adapter = new WebtoonRecyclerViewAdapter(list,getContext());
-
-       // gridLayoutManager = new GridLayoutManager(getContext(), 6);
 
 
         mViewPager = (ViewPager)view.findViewById(R.id.viewpager_weekday);
