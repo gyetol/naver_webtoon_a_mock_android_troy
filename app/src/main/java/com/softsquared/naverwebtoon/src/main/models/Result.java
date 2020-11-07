@@ -1,5 +1,4 @@
 package com.softsquared.naverwebtoon.src.main.models;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
@@ -19,7 +18,7 @@ public class Result {
     private String thumbnail;
     @SerializedName("starscore")
     @Expose
-    private Object starscore;
+    private Double starscore;
 
     public Integer getIdx() {
         return idx;
@@ -53,11 +52,11 @@ public class Result {
         this.thumbnail = thumbnail;
     }
 
-    public Object getStarscore() {
+    public Double getStarscore() {
         return starscore;
     }
 
-    public void setStarscore(Object starscore) {
+    public void setStarscore(Double starscore) {
         this.starscore = starscore;
     }
 

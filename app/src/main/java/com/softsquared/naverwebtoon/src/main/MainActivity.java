@@ -7,11 +7,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.softsquared.naverwebtoon.R;
-import com.softsquared.naverwebtoon.src.main.interfaces.MainActivityView;
+import com.softsquared.naverwebtoon.src.main.fragmentbestchallenge.FragmentBestchallenge;
+import com.softsquared.naverwebtoon.src.main.fragmentmore.FragmentMore;
+import com.softsquared.naverwebtoon.src.main.fragmentmypage.FragmentMypage;
+import com.softsquared.naverwebtoon.src.main.fragmentrecommendation.FragmentRecommendation;
+import com.softsquared.naverwebtoon.src.main.fragmentwebtoon.FragmentWebtoon;
 
 public class MainActivity extends AppCompatActivity  {
 

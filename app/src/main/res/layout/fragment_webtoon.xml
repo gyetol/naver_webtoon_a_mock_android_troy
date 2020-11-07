@@ -4,8 +4,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
 
 
     <com.amar.library.ui.StickyScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -16,8 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:orientation="vertical">
 
 
             <FrameLayout
@@ -27,19 +25,47 @@
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    />
+                    android:layout_height="match_parent" />
 
-                <TextView
-                    android:id="@+id/viewpager_page_count_text"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1 / 10"
-                    android:textSize="20dp"
-                    android:textColor="#000000"
+                    android:orientation="horizontal"
                     android:layout_gravity="bottom|right"
                     android:layout_margin="20dp"
-                    />
+                    android:background="@drawable/layout_background" >
+
+                    <TextView
+                        android:id="@+id/viewpager_page_count_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:text="1"
+                        android:textColor="#ffffff"
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/viewpager_page_slash_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:text="/ "
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/viewpager_page_maxcount_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="2dp"
+                        android:text="10"
+                        android:textSize="10dp"
+                        android:textStyle="bold"
+                        />
+                </LinearLayout>
 
             </FrameLayout>
 
@@ -58,24 +84,21 @@
                         android:id="@+id/webtoon_tablayout"
                         android:layout_width="432dp"
                         android:layout_height="wrap_content"
-                        app:tabMaxWidth="48dp"
-                        app:tabMode="fixed"
-                        app:tabTextColor="#000000"
-                        app:tabSelectedTextColor="#ffffff"
                         android:background="#ffffff"
                         app:tabBackground="@drawable/tab_background"
-                        />
+                        app:tabMaxWidth="48dp"
+                        app:tabMode="fixed"
+                        app:tabSelectedTextColor="#ffffff"
+                        app:tabTextColor="#000000" />
 
 
                 </LinearLayout>
             </HorizontalScrollView>
+
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/viewpager_weekday"
                 android:layout_width="match_parent"
-                android:layout_height="700dp"
-                />
-            
-
+                android:layout_height="600dp" />
 
 
         </LinearLayout>

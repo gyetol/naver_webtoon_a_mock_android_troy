@@ -1,20 +1,19 @@
-package com.softsquared.naverwebtoon.src.main;
-
+package com.softsquared.naverwebtoon.src.main.fragmentwebtoon.fragmentnew;
 
 import com.softsquared.naverwebtoon.src.main.interfaces.MainActivityView;
-        import com.softsquared.naverwebtoon.src.main.interfaces.MainRetrofitInterface;
-        import com.softsquared.naverwebtoon.src.main.models.WebtoonResponse;
+import com.softsquared.naverwebtoon.src.main.interfaces.MainRetrofitInterface;
+import com.softsquared.naverwebtoon.src.main.models.WebtoonResponse;
 
-        import retrofit2.Call;
-        import retrofit2.Callback;
-        import retrofit2.Response;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-        import static com.softsquared.naverwebtoon.src.ApplicationClass.getRetrofit;
+import static com.softsquared.naverwebtoon.src.ApplicationClass.getRetrofit;
 
-public class MainService {
+public class NewService {
     private final MainActivityView mMainActivityView;
 
-    public MainService(final MainActivityView mainActivityView){
+    public NewService(final MainActivityView mainActivityView){
         this.mMainActivityView = mainActivityView;
     }
 
