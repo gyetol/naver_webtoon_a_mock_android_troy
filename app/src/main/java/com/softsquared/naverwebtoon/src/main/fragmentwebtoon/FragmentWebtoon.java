@@ -18,11 +18,15 @@ import com.google.android.material.tabs.TabLayout;
 import com.softsquared.naverwebtoon.R;
 import com.softsquared.naverwebtoon.src.main.adapters.ContentsPagerAdapter;
 import com.softsquared.naverwebtoon.src.main.adapters.ImageViewPagerAdapter;
+import com.softsquared.naverwebtoon.src.main.fragmentwebtoon.fragmentmonday.MondayService;
+import com.softsquared.naverwebtoon.src.main.interfaces.TopBannerView;
+import com.softsquared.naverwebtoon.src.main.models.TopBannerResult;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class FragmentWebtoon extends Fragment {
+public class FragmentWebtoon extends Fragment   {
 
     private ViewPager viewPager;
     private ImageViewPagerAdapter pagerAdapter;
@@ -43,7 +47,6 @@ public class FragmentWebtoon extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_webtoon, container, false);
         viewPager = (ViewPager)(view.findViewById(R.id.viewPager));
         pagerAdapter = new ImageViewPagerAdapter(getActivity());
@@ -60,6 +63,7 @@ public class FragmentWebtoon extends Fragment {
             public void onPageSelected(int position) {
                 currentPage=position;
                 textView.setText(currentPage+1+"");
+                //pagerAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -71,7 +75,7 @@ public class FragmentWebtoon extends Fragment {
         final Runnable pagerRunnable = new Runnable() {
             @Override
             public void run() {
-                if(currentPage==10){
+                if(currentPage>=6){
                     currentPage=0;
                 }
 
@@ -88,8 +92,6 @@ public class FragmentWebtoon extends Fragment {
                 handler.post(pagerRunnable);
             }
         },DELAY_MS,PERIOD_MS);
-
-
 
 
 
@@ -137,7 +139,6 @@ public class FragmentWebtoon extends Fragment {
         });
 
 
-
         return view;
     }
 
@@ -145,12 +146,17 @@ public class FragmentWebtoon extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
     }
+
+
+
+
 
    /* private View createTabView(String tabName){
         View tabView = LayoutInflater.from(mContext).inflate(R.layout.custom_tab,null);

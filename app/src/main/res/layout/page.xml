@@ -9,7 +9,9 @@
         android:id="@+id/viewpager_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:srcCompat="@drawable/webtoon_viewpager_1"
+        app:srcCompat="@drawable/webtoon_viewpager_5"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         />
 
 

@@ -20,9 +20,13 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.target.Target;
 import com.softsquared.naverwebtoon.R;
+import com.softsquared.naverwebtoon.src.main.fragmentwebtoon.TopBannerService;
+import com.softsquared.naverwebtoon.src.main.interfaces.TopBannerView;
 import com.softsquared.naverwebtoon.src.main.models.Result;
+import com.softsquared.naverwebtoon.src.main.models.TopBannerResult;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecyclerViewAdapter.MyViewHolder> {
 
@@ -95,4 +99,7 @@ public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecy
             //search.setColorFilter(0xFFFF0000, PorterDuff.Mode.MULTIPLY);
         }
     }
+
+
+
 }
