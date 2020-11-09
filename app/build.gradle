@@ -27,6 +27,15 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     implementation 'com.google.android.material:material:1.2.1'
+
+    //implementation files('libs\\naveridlogin_android_sdk_4.2.6.aar')
+    implementation 'com.android.support:appcompat-v7:30.0.0'
+    implementation 'com.android.support:support-core-utils:30.0.0'
+    implementation 'com.android.support:customtabs:30.0.0'
+    implementation 'com.android.support:support-v4:30.0.0'
+
+
+
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -46,11 +55,17 @@ dependencies {
     //sticky scrollview
     implementation 'com.github.amarjain07:StickyScrollView:1.0.2'
 
-    implementation 'com.android.support:support-annotations:27.1.1'
+    implementation 'com.android.support:support-annotations:30.1.1'
     implementation 'com.android.support:design:30.1.0'
 
     implementation 'com.android.support:recyclerview-v7:30.1.1'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
+
+    //toolbar
+    implementation 'com.android.support:appcompat-v7:30.1.1'
+
+    //naver login
+    implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.6'
 
 }
 

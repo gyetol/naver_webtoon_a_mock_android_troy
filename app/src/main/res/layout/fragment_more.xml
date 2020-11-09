@@ -1,62 +1,396 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="더보기"
-        android:textSize="20dp"
-        android:textColor="#000000"
-        />
-
-    <ImageView
-        android:id="@+id/more_search"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/more_search"
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/app_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
         app:layout_constraintLeft_toLeftOf="parent"
-        />
-    <ImageView
-        android:id="@+id/more_cookie"
-        android:layout_width="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/more_info_layout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/more_cookie"
-        />
-    <ImageView
-        android:id="@+id/more_getzzal"
-        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/app_toolbar"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="누구누구님"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="로그인계정설정>"
+            android:textSize="8dp"
+            android:gravity="center"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="내 쿠키"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/more_search_layout"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="1"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/more_getzzal"
-        />
-    <ImageView
-        android:id="@+id/more_play"
-        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/more_cookie_layout"
+        app:layout_constraintTop_toBottomOf="@id/more_info_layout"
+
+        >
+
+        <ImageView
+            android:id="@+id/more_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/more_search"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            />
+
+        <TextView
+            android:id="@+id/more_search_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="검색"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/more_search"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/more_cookie_layout"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="1"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/more_play"
-        />
-    <ImageView
-        android:id="@+id/more_notice"
-        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/more_search_layout"
+        app:layout_constraintRight_toLeftOf="@id/more_getzzal_layout"
+        app:layout_constraintTop_toBottomOf="@id/more_info_layout"
+        >
+
+        <ImageView
+            android:id="@+id/more_cookie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/more_cookie"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            />
+
+        <TextView
+            android:id="@+id/more_cookie_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="쿠키오븐"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/more_cookie"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/more_getzzal_layout"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="1"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/more_notice"
-        />
-    <ImageView
-        android:id="@+id/more_setting"
-        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/more_cookie_layout"
+        app:layout_constraintRight_toLeftOf="@id/more_play_layout"
+        app:layout_constraintTop_toBottomOf="@id/more_info_layout"
+        >
+
+        <ImageView
+            android:id="@+id/more_getzzal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/more_getzzal"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            />
+
+        <TextView
+            android:id="@+id/more_getzzal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="겟짤"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/more_getzzal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/more_play_layout"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="1"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/more_setting"
-        />
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/more_getzzal_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/more_info_layout"
+        >
+
+        <ImageView
+            android:id="@+id/more_play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/more_play"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            />
+
+        <TextView
+            android:id="@+id/more_play_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PLAY"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/more_play"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/more_notice_layout"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="1"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/more_search"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/more_setting_layout"
+        app:layout_constraintTop_toBottomOf="@id/more_search_layout"
+        >
+
+        <ImageView
+            android:id="@+id/more_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/more_notice"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            />
+
+        <TextView
+            android:id="@+id/more_notice_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="공지사항"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/more_notice"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/more_setting_layout"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/more_notice_layout"
+        app:layout_constraintRight_toLeftOf="@+id/more_space1_layout"
+        app:layout_constraintTop_toBottomOf="@id/more_cookie_layout"
+        >
+
+        <ImageView
+            android:id="@+id/more_setting"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/more_setting"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            />
+
+        <TextView
+            android:id="@+id/more_setting_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="설정"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/more_setting"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/more_space1_layout"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@+id/more_setting_layout"
+        app:layout_constraintRight_toLeftOf="@+id/more_space2_layout"
+        app:layout_constraintTop_toBottomOf="@id/more_getzzal_layout"
+
+        >
+
+        <ImageView
+            android:id="@+id/more_space1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/more_space"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/more_space2_layout"
+        android:layout_width="0dp"
+        app:layout_constraintHorizontal_weight="1"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toRightOf="@id/more_space1_layout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/more_play_layout"
+
+        >
+
+        <ImageView
+            android:id="@+id/more_space2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:srcCompat="@drawable/more_space"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <FrameLayout
+        android:id="@+id/more_frame_login"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        >
+
+    <com.nhn.android.naverlogin.ui.view.OAuthLoginButton
+        android:id="@+id/more_naver_login"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="20dp"
+        android:gravity="bottom"
+        android:orientation="horizontal"
         />
+
+        <LinearLayout
+            android:id="@+id/more_naver_login_dup"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/naver"
+            android:gravity="bottom"
+            android:orientation="horizontal"
+            />
+
+
+
+
+        <TextView
+            android:id="@+id/tv_naver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그인"
+            android:textSize="20dp"
+            android:textColor="#ffffff"
+            android:layout_gravity="center"
+            />
+
+        <ImageView
+            android:id="@+id/more_webtoon_picture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:src="@drawable/more_webtoon_picture"
+            android:layout_marginBottom="20dp"
+            />
+
+    </FrameLayout>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

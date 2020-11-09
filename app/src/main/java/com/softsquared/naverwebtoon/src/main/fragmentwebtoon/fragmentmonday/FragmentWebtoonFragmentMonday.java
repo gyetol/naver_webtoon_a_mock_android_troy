@@ -12,6 +12,7 @@ package com.softsquared.naverwebtoon.src.main.fragmentwebtoon.fragmentmonday;
         import androidx.recyclerview.widget.GridLayoutManager;
         import androidx.recyclerview.widget.RecyclerView;
 
+        import com.nhn.android.naverlogin.OAuthLogin;
         import com.softsquared.naverwebtoon.R;
         import com.softsquared.naverwebtoon.src.main.MainService;
         import com.softsquared.naverwebtoon.src.main.adapters.WebtoonRecyclerViewAdapter;
