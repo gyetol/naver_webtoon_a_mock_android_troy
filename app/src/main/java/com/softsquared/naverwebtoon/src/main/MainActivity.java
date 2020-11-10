@@ -2,6 +2,7 @@ package com.softsquared.naverwebtoon.src.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -11,6 +12,7 @@ import android.view.MenuItem;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.softsquared.naverwebtoon.R;
 import com.softsquared.naverwebtoon.src.main.fragmentbestchallenge.FragmentBestchallenge;
+import com.softsquared.naverwebtoon.src.main.fragmentdetail.FragmentDetail;
 import com.softsquared.naverwebtoon.src.main.fragmentmore.FragmentMore;
 import com.softsquared.naverwebtoon.src.main.fragmentmypage.FragmentMypage;
 import com.softsquared.naverwebtoon.src.main.fragmentrecommendation.FragmentRecommendation;
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity  {
     private FragmentBestchallenge fragmentBestchallenge = new FragmentBestchallenge();
     private FragmentMypage fragmentMypage = new FragmentMypage();
     private FragmentMore fragmentMore = new FragmentMore();
+    private FragmentDetail fragmentDetail = new FragmentDetail();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,12 @@ public class MainActivity extends AppCompatActivity  {
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
+    }
+
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout, fragmentDetail).commit();
     }
 
     class ItemSelectedListener implements BottomNavigationView.OnNavigationItemSelectedListener{

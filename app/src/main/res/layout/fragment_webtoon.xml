@@ -148,7 +148,9 @@
             <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:id="@+id/titleLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:fadeScrollbars="true"
+                >
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -165,7 +167,9 @@
                         app:tabMaxWidth="48dp"
                         app:tabMode="fixed"
                         app:tabSelectedTextColor="#ffffff"
-                        app:tabTextColor="#000000" />
+                        app:tabTextColor="#000000"
+                        app:tabRippleColor="@null"
+                        />
 
 
                 </LinearLayout>

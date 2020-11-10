@@ -2,7 +2,9 @@ package com.softsquared.naverwebtoon.src.main.fragmentmore;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,18 +18,46 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
+import com.google.gson.JsonObject;
 import com.nhn.android.naverlogin.OAuthLogin;
 import com.nhn.android.naverlogin.OAuthLoginHandler;
+import com.nhn.android.naverlogin.data.OAuthLoginPreferenceManager;
 import com.nhn.android.naverlogin.ui.view.OAuthLoginButton;
 import com.softsquared.naverwebtoon.R;
+import com.softsquared.naverwebtoon.src.ApplicationClass;
+import com.softsquared.naverwebtoon.src.main.JWTUtils;
+import com.softsquared.naverwebtoon.src.main.LoginService;
 import com.softsquared.naverwebtoon.src.main.MainActivity;
+import com.softsquared.naverwebtoon.src.main.fragmentwebtoon.fragmentmonday.MondayService;
+import com.softsquared.naverwebtoon.src.main.interfaces.LoginView;
+import com.softsquared.naverwebtoon.src.main.models.LoginResult;
+import com.softsquared.naverwebtoon.src.user.ApiUserProfile;
 
-public class FragmentMore extends Fragment {
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
+import android.content.SharedPreferences;
+import android.widget.TextView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+public class FragmentMore extends Fragment implements LoginView {
     Toolbar tb = null;
     FrameLayout mFrameLayout = null;
     boolean mLoginFlag = false;
     View view = null;
     //Context mContext = null;
+    String accessToken;
+    String mNickname;
 
     //네이버로그인
     private static String OAUTH_CLIENT_ID ="TsRlPAeR8cojfwcDKvbG";
@@ -48,7 +78,15 @@ public class FragmentMore extends Fragment {
         ((AppCompatActivity)getActivity()).setSupportActionBar(tb);
         initData(view);
 
+        if(mLoginFlag) {
+            TextView nickname = view.findViewById(R.id.more_nickname);
+            nickname.setText(mNickname);
+            mFrameLayout = view.findViewById(R.id.more_frame_login);
+            mFrameLayout.setVisibility(View.GONE);
+            LinearLayout linearLayout = view.findViewById(R.id.more_info_layout);
+            linearLayout.setVisibility(View.VISIBLE);
 
+        }
 
 
 
@@ -66,28 +104,21 @@ public class FragmentMore extends Fragment {
 
     }
 
-    private OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
+    private  OAuthLoginHandler mOAuthLoginHandler = new OAuthLoginHandler() {
         @Override
         public void run(boolean success) {
             if(success) {
-                String accessToken = mOAuthLoginInstance.getAccessToken(mContext);
+                accessToken = mOAuthLoginInstance.getAccessToken(mContext);
                 String refreshToken = mOAuthLoginInstance.getRefreshToken(mContext);
                 long expiresAt = mOAuthLoginInstance.getExpiresAt(mContext);
                 String tokenType = mOAuthLoginInstance.getTokenType(mContext);
-                Log.d("haha", "토큰: " + accessToken);
-                mLoginFlag=true;
-                if(mLoginFlag) {
-                    mFrameLayout = view.findViewById(R.id.more_frame_login);
-                    mFrameLayout.setVisibility(View.GONE);
-                    LinearLayout linearLayout = view.findViewById(R.id.more_info_layout);
-                    linearLayout.setVisibility(View.VISIBLE);
-                }
+                tryGetLoginResponse(accessToken);
+
                 //redirectSignupActivity();
             }
             else{
                 String errorCode = mOAuthLoginInstance.getLastErrorCode(mContext).getCode();
                 String errorDesc = mOAuthLoginInstance.getLastErrorDesc(mContext);
-                Log.d("haha","에러: "+errorCode+ " / 에러: "+errorDesc);
             }
         }
     };
@@ -97,4 +128,58 @@ public class FragmentMore extends Fragment {
         startActivity(intent);
         getActivity().finish();
     }
+
+
+    public void tryGetLoginResponse(String accessToken){
+        final LoginService loginService = new LoginService(this,accessToken);
+        loginService.getLoginResponse();
+    }
+
+
+    @Override
+    public void validateSuccess(LoginResult loginResult) {
+        SharedPreferences test = mContext.getSharedPreferences(ApplicationClass.TAG, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = test.edit();
+        editor.putString("X-ACCESS-TOKEN",loginResult.getJwt());
+        editor.commit();
+        try {
+            JWTUtils.decoded(loginResult.getJwt());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        TextView nickname = view.findViewById(R.id.more_nickname);
+
+        //jwt 디코드 후 제이슨파싱
+        String[] split = loginResult.getJwt().split("\\.");
+        byte[] decodeBytes = Base64.decode(split[1], Base64.URL_SAFE);
+
+        try {
+             String nick = new String(decodeBytes,"UTF-8");
+            JSONObject jsonObject = new JSONObject(nick);
+            mNickname = jsonObject.getString("nick");
+            nickname.setText(mNickname+"님");
+
+        } catch (UnsupportedEncodingException | JSONException e) {
+            e.printStackTrace();
+        }
+
+        mLoginFlag=true;
+            mFrameLayout = view.findViewById(R.id.more_frame_login);
+            mFrameLayout.setVisibility(View.GONE);
+            LinearLayout linearLayout = view.findViewById(R.id.more_info_layout);
+            linearLayout.setVisibility(View.VISIBLE);
+
+    }
+
+    @Override
+    public void validateFailure(String message) {
+
+    }
+
+    public void logout(){
+
+    }
+
+
 }

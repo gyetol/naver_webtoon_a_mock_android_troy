@@ -38,9 +38,7 @@ public class ApplicationClass extends Application {
 
     // Retrofit 인스턴스
     public static Retrofit retrofit;
-//1차 피드백 받으셨나요? 오늘 6시에 1차잇습니다! 아 알겠습니다 .
 
-    // 얘가 왜 onCreate 실행이; 음..
     @Override
     public void onCreate() {
         super.onCreate();

@@ -11,7 +11,6 @@
         android:layout_height="match_parent"
         app:srcCompat="@drawable/webtoon_viewpager_5"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
         />
 
 

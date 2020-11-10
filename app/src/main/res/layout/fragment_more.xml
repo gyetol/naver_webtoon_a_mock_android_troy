@@ -27,34 +27,78 @@
         >
 
         <TextView
+            android:id="@+id/more_nickname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="누구누구님"
-            android:textSize="15dp"
+            android:text="econostein님"
+            android:textSize="20dp"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:gravity="center"
+            android:layout_marginTop="20dp"
             />
 
         <TextView
+            android:id="@+id/more_login_setting"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="로그인계정설정>"
-            android:textSize="8dp"
+            android:textSize="13dp"
             android:gravity="center"
+            android:layout_marginTop="5dp"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/layout_background_2"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/more_color_cookie"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="내 쿠키"
                 android:textColor="@color/black"
-                android:textSize="12dp"
+                android:textSize="15dp"
+                android:layout_marginTop="15dp"
                 />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0개"
+                android:textColor="@color/naver"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="충전하기"
+                android:textSize="12dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+            />
 
         </LinearLayout>
 
@@ -69,7 +113,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/more_cookie_layout"
         app:layout_constraintTop_toBottomOf="@id/more_info_layout"
-
+        android:layout_marginTop="20dp"
         >
 
         <ImageView
@@ -107,6 +151,7 @@
         app:layout_constraintLeft_toRightOf="@id/more_search_layout"
         app:layout_constraintRight_toLeftOf="@id/more_getzzal_layout"
         app:layout_constraintTop_toBottomOf="@id/more_info_layout"
+        android:layout_marginTop="20dp"
         >
 
         <ImageView
@@ -144,6 +189,7 @@
         app:layout_constraintLeft_toRightOf="@id/more_cookie_layout"
         app:layout_constraintRight_toLeftOf="@id/more_play_layout"
         app:layout_constraintTop_toBottomOf="@id/more_info_layout"
+        android:layout_marginTop="20dp"
         >
 
         <ImageView
@@ -181,6 +227,7 @@
         app:layout_constraintLeft_toRightOf="@id/more_getzzal_layout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/more_info_layout"
+        android:layout_marginTop="20dp"
         >
 
         <ImageView
@@ -217,6 +264,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@+id/more_setting_layout"
         app:layout_constraintTop_toBottomOf="@id/more_search_layout"
+        android:layout_marginTop="20dp"
         >
 
         <ImageView
@@ -254,6 +302,7 @@
         app:layout_constraintLeft_toRightOf="@id/more_notice_layout"
         app:layout_constraintRight_toLeftOf="@+id/more_space1_layout"
         app:layout_constraintTop_toBottomOf="@id/more_cookie_layout"
+        android:layout_marginTop="20dp"
         >
 
         <ImageView
@@ -292,7 +341,7 @@
         app:layout_constraintLeft_toRightOf="@+id/more_setting_layout"
         app:layout_constraintRight_toLeftOf="@+id/more_space2_layout"
         app:layout_constraintTop_toBottomOf="@id/more_getzzal_layout"
-
+        android:layout_marginTop="20dp"
         >
 
         <ImageView
@@ -317,7 +366,7 @@
         app:layout_constraintLeft_toRightOf="@id/more_space1_layout"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/more_play_layout"
-
+        android:layout_marginTop="20dp"
         >
 
         <ImageView
