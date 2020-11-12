@@ -106,8 +106,8 @@ public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecy
                         bundle.putInt("고른만화",pickedItemIdx);
                         fragmentDetail.setArguments(bundle);
                         transaction = fragmentManager.beginTransaction();
-                       transaction.replace(R.id.frameLayout, fragmentDetail).commit();
-
+                       transaction.replace(R.id.frameLayout, fragmentDetail);
+                        transaction.addToBackStack(null).commit();
 
                     }
                 }

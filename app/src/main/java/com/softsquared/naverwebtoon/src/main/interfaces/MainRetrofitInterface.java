@@ -13,7 +13,10 @@ import retrofit2.http.Query;
 
 public interface MainRetrofitInterface {
     @GET("/mainpage")
-    Call<WebtoonResponse>getWebtoonList(@Query("keyword") String keyword);
+    Call<WebtoonResponse>getWebtoonList(
+            @Query("keyword") String keyword,
+            @Query("order") String order
+    );
 
     @GET("/banner")
     Call<TopBannerResponse>getTopBannerList(@Query("size") int size);

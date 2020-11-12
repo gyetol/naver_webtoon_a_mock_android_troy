@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity  {
         transaction.replace(R.id.frameLayout, fragmentWebtoon).commitAllowingStateLoss();
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
+        bottomNavigationView.setItemIconTintList(null);
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
     }
 

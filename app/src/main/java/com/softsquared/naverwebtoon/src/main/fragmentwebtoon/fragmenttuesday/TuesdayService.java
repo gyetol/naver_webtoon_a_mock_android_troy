@@ -20,7 +20,7 @@ public class TuesdayService {
 
     public void getWebtoonList(){
         final MainRetrofitInterface mainRetrofitInterface = getRetrofit().create(MainRetrofitInterface.class);
-        mainRetrofitInterface.getWebtoonList("화").enqueue(new Callback<WebtoonResponse>() {
+        mainRetrofitInterface.getWebtoonList("화","인기순").enqueue(new Callback<WebtoonResponse>() {
             @Override
             public void onResponse(Call<WebtoonResponse> call, Response<WebtoonResponse> response) {
                 final WebtoonResponse webtoonResponse = response.body();

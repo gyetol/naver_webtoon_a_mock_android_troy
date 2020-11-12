@@ -1,16 +1,24 @@
 package com.softsquared.naverwebtoon.src.main.fragmentdetail;
 
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -38,6 +46,12 @@ public class FragmentDetail extends Fragment implements DetailFragmentView {
     TextView author;
     TextView weekday;
     TextView story;
+    ScrollView scrollView;
+    ImageView storyExpandButton;
+
+    Toolbar tb;
+    LinearLayout colorBar;
+    boolean connectionFlag=false;
 
 
     @Override
@@ -46,10 +60,38 @@ public class FragmentDetail extends Fragment implements DetailFragmentView {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detail,container,false);
+
+        colorBar = view.findViewById(R.id.detail_color_bar);
+        tb = (Toolbar)view.findViewById(R.id.detail_toolbar);
+        ((AppCompatActivity)getActivity()).setSupportActionBar(tb);
+        ActionBar actionBar =((AppCompatActivity)getActivity()).getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+
+
+        scrollView = view.findViewById(R.id.detail_scroll);
+        scrollView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+            @Override
+            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+                int x = scrollY - oldScrollY;
+
+                if (scrollY == 0) {
+                    if(connectionFlag) {
+                        tb.setBackgroundColor(Color.parseColor(mDetails.getColor()));
+                        colorBar.setBackgroundColor(Color.parseColor(mDetails.getColor()));
+                    }
+
+                } else {
+                    tb.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                    colorBar.setBackgroundColor(Color.parseColor("#FFFFFF"));
+                }
+            }
+        });
+
 
         mGlideRequestManager = Glide.with(view.getContext());
         ArrayList<DetailEpisodeList> detailEpisodeListResults = new ArrayList<>();
@@ -72,7 +114,19 @@ public class FragmentDetail extends Fragment implements DetailFragmentView {
         author = view.findViewById(R.id.detail_author);
         weekday = view.findViewById(R.id.detail_weekday);
         story = view.findViewById(R.id.detail_story);
+        storyExpandButton = view.findViewById(R.id.detail_story_expand);
 
+        storyExpandButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(story.getMaxLines()==1){
+                    story.setMaxLines(10);
+                }
+                else{
+                    story.setMaxLines(1);
+                }
+            }
+        });
 
         return view;
     }
@@ -84,6 +138,7 @@ public class FragmentDetail extends Fragment implements DetailFragmentView {
 
     @Override
     public void validateSuccess(DetailResult detailResult) {
+        connectionFlag=true;
         mDetailResult = detailResult;
         mDetailEpisodeLists = (ArrayList<DetailEpisodeList>)mDetailResult.getEpisodelist();
         mDetails = mDetailResult.getDetail();
@@ -99,7 +154,8 @@ public class FragmentDetail extends Fragment implements DetailFragmentView {
         author.setText(mDetails.getAuthor());
         weekday.setText(mDetails.getDays());
         story.setText(mDetails.getDetails());
-
+        tb.setBackgroundColor(Color.parseColor(mDetails.getColor()));
+        colorBar.setBackgroundColor(Color.parseColor(mDetails.getColor()));
         DetailAdapter adapter = new DetailAdapter(mDetailEpisodeLists,mContext,mGlideRequestManager);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();

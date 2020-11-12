@@ -3,6 +3,9 @@ package com.softsquared.naverwebtoon.src.main.fragmentdetail.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
 public class DetailResponse {
 
     @SerializedName("result")

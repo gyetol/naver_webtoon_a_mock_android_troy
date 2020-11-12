@@ -9,7 +9,7 @@ public class WebtoonResponse {
     @SerializedName("result")
     @Expose
     private List<Result> result = null;
-    @SerializedName("isSuccess")
+    @SerializedName("is_success")
     @Expose
     private Boolean isSuccess;
     @SerializedName("code")

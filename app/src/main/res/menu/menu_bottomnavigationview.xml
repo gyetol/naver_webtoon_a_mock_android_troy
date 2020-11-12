@@ -5,6 +5,7 @@
     <item
         android:id="@+id/bottom_navigation_view_webtoon_1"
         android:icon="@drawable/naviview1_w"
+
         android:title="웹툰"
         />
     <item

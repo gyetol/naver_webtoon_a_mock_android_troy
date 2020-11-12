@@ -1,7 +1,7 @@
 package com.softsquared.naverwebtoon.src.main.fragmentdetail.models;
 
-        import com.google.gson.annotations.Expose;
-        import com.google.gson.annotations.SerializedName;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class DetailEpisodeList {
 
@@ -26,6 +26,9 @@ public class DetailEpisodeList {
     @SerializedName("type")
     @Expose
     private String type;
+    @SerializedName("look")
+    @Expose
+    private String look;
 
     public Integer getIdx() {
         return idx;
@@ -83,5 +86,12 @@ public class DetailEpisodeList {
         this.type = type;
     }
 
-}
+    public String getLook() {
+        return look;
+    }
 
+    public void setLook(String look) {
+        this.look = look;
+    }
+
+}

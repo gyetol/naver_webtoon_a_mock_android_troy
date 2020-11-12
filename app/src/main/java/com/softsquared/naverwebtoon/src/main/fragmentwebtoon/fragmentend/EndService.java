@@ -19,7 +19,7 @@ public class EndService {
 
     public void getWebtoonList(){
         final MainRetrofitInterface mainRetrofitInterface = getRetrofit().create(MainRetrofitInterface.class);
-        mainRetrofitInterface.getWebtoonList("완결").enqueue(new Callback<WebtoonResponse>() {
+        mainRetrofitInterface.getWebtoonList("완결","인기순").enqueue(new Callback<WebtoonResponse>() {
             @Override
             public void onResponse(Call<WebtoonResponse> call, Response<WebtoonResponse> response) {
                 final WebtoonResponse webtoonResponse = response.body();
