@@ -1,25 +1,25 @@
 package com.softsquared.naverwebtoon.src.main.adapters;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.os.Bundle;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ImageView;
+        import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.RecyclerView;
+        import androidx.annotation.NonNull;
+        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.fragment.app.FragmentManager;
+        import androidx.fragment.app.FragmentTransaction;
+        import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
-import com.softsquared.naverwebtoon.R;
-import com.softsquared.naverwebtoon.src.main.fragmentdetail.FragmentDetail;
-import com.softsquared.naverwebtoon.src.main.models.Result;
+        import com.bumptech.glide.Glide;
+        import com.softsquared.naverwebtoon.R;
+        import com.softsquared.naverwebtoon.src.main.fragmentdetail.FragmentDetail;
+        import com.softsquared.naverwebtoon.src.main.models.Result;
 
-import java.util.ArrayList;
+        import java.util.ArrayList;
 
 public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecyclerViewAdapter.MyViewHolder> {
 
@@ -36,7 +36,7 @@ public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecy
         this.mContext = context;
         this.mInflater = LayoutInflater.from(context);
         fragmentManager= ((AppCompatActivity)mContext).getSupportFragmentManager();
-       fragmentDetail =new FragmentDetail();
+        fragmentDetail =new FragmentDetail();
     }
 
     @NonNull
@@ -85,7 +85,7 @@ public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecy
         public ImageView imageView;
         public TextView author;
         public TextView starScore;
-       // ImageView search;
+        // ImageView search;
 
         public MyViewHolder(View itemView){
             super(itemView);
@@ -106,7 +106,7 @@ public class WebtoonRecyclerViewAdapter extends RecyclerView.Adapter<WebtoonRecy
                         bundle.putInt("고른만화",pickedItemIdx);
                         fragmentDetail.setArguments(bundle);
                         transaction = fragmentManager.beginTransaction();
-                       transaction.replace(R.id.frameLayout, fragmentDetail);
+                        transaction.replace(R.id.frameLayout, fragmentDetail);
                         transaction.addToBackStack(null).commit();
 
                     }

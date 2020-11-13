@@ -1,6 +1,8 @@
 package com.softsquared.naverwebtoon.src.main.fragmentdetail.adapters;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.RequestManager;
 import com.softsquared.naverwebtoon.R;
 import com.softsquared.naverwebtoon.src.main.fragmentdetail.models.DetailEpisodeList;
+import com.softsquared.naverwebtoon.src.watch.WatchActivity;
 
 import java.util.ArrayList;
 
@@ -39,6 +42,20 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.ViewHolder
             imageView=itemView.findViewById(R.id.detail_recycler_image);
             episode=itemView.findViewById(R.id.detail_recycler_episode);
             starAndDate=itemView.findViewById(R.id.detail_recycler_star_date);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
+                    if(pos != RecyclerView.NO_POSITION){
+                        int pickedItemIdx = list.get(pos).getIdx();
+                        Intent intent = new Intent(v.getContext(), WatchActivity.class);
+                        intent.putExtra("고른에피소드",pickedItemIdx);
+                        intent.setFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+                        v.getContext().startActivity(intent);
+                    }
+                }
+            });
         }
     }
 

@@ -2,6 +2,9 @@ package com.softsquared.naverwebtoon.src.main.fragmentdetail;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -49,6 +52,10 @@ public class FragmentDetail extends Fragment implements DetailFragmentView {
     ScrollView scrollView;
     ImageView storyExpandButton;
 
+    ImageView first;
+    ImageView second;
+    ImageView third;
+
     Toolbar tb;
     LinearLayout colorBar;
     boolean connectionFlag=false;
@@ -65,6 +72,24 @@ public class FragmentDetail extends Fragment implements DetailFragmentView {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_detail,container,false);
+        GradientDrawable drawable = (GradientDrawable)(getContext().getDrawable(R.drawable.background_rounding));
+
+        first=view.findViewById(R.id.detail_preview_image_first);
+        second=view.findViewById(R.id.detail_preview_image_second);
+        third=view.findViewById(R.id.detail_preview_image_third);
+
+        //first.setBackground(new ShapeDrawable(new OvalShape()));
+        first.setBackground(drawable);
+        first.setClipToOutline(true);
+        first.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+        second.setBackground(drawable);
+        second.setClipToOutline(true);
+        second.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
+        third.setBackground(drawable);
+        third.setClipToOutline(true);
+        third.setScaleType(ImageView.ScaleType.CENTER_CROP);
 
         colorBar = view.findViewById(R.id.detail_color_bar);
         tb = (Toolbar)view.findViewById(R.id.detail_toolbar);
@@ -142,6 +167,17 @@ public class FragmentDetail extends Fragment implements DetailFragmentView {
         mDetailResult = detailResult;
         mDetailEpisodeLists = (ArrayList<DetailEpisodeList>)mDetailResult.getEpisodelist();
         mDetails = mDetailResult.getDetail();
+
+        if(mDetails.getTitle().equals("인생존망")){
+            first.setImageResource(R.drawable.first);
+            second.setImageResource(R.drawable.second);
+            third.setImageResource(R.drawable.third);
+        }
+        else if(mDetails.getTitle().equals("여신강림")){
+            first.setImageResource(R.drawable.first1);
+            second.setImageResource(R.drawable.second2);
+            third.setImageResource(R.drawable.third3);
+        }
 
         String url = mDetails.getProfile();
         mGlideRequestManager

@@ -7,6 +7,7 @@
     android:background="@drawable/gridbackground"
     >
 
+
     <ImageView
         android:id="@+id/detail_recycler_image"
         android:layout_width="120dp"
@@ -14,6 +15,7 @@
         android:src="@drawable/webtoon_viewpager_2"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toLeftOf="@id/detail_recycler_text_area"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintHorizontal_bias="0"
@@ -21,12 +23,13 @@
         />
     <LinearLayout
         android:id="@+id/detail_recycler_text_area"
-        android:layout_width="wrap_content"
+        android:layout_width="290dp"
         android:layout_height="match_parent"
         android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/detail_recycler_image"
+
         >
 
         <TextView
@@ -64,5 +67,4 @@
         </LinearLayout>
 
     </LinearLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

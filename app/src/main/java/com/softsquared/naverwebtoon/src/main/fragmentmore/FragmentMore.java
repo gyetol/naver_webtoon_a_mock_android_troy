@@ -28,6 +28,8 @@ import com.softsquared.naverwebtoon.src.ApplicationClass;
 import com.softsquared.naverwebtoon.src.main.JWTUtils;
 import com.softsquared.naverwebtoon.src.main.LoginService;
 import com.softsquared.naverwebtoon.src.main.MainActivity;
+import com.softsquared.naverwebtoon.src.main.fragmentmore.interfaces.MoreFragmentView;
+import com.softsquared.naverwebtoon.src.main.fragmentmore.models.MoreResult;
 import com.softsquared.naverwebtoon.src.main.fragmentwebtoon.fragmentmonday.MondayService;
 import com.softsquared.naverwebtoon.src.main.interfaces.LoginView;
 import com.softsquared.naverwebtoon.src.main.models.LoginResult;
@@ -50,7 +52,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class FragmentMore extends Fragment implements LoginView {
+public class FragmentMore extends Fragment implements LoginView, MoreFragmentView {
     Toolbar tb = null;
     FrameLayout mFrameLayout = null;
     boolean mLoginFlag = false;
@@ -58,6 +60,8 @@ public class FragmentMore extends Fragment implements LoginView {
     //Context mContext = null;
     String accessToken;
     String mNickname;
+    TextView mCookieText;
+
 
     //네이버로그인
     private static String OAUTH_CLIENT_ID ="TsRlPAeR8cojfwcDKvbG";
@@ -76,6 +80,9 @@ public class FragmentMore extends Fragment implements LoginView {
         tb = (Toolbar)view.findViewById(R.id.app_toolbar);
         tb.setTitle("더보기");
         ((AppCompatActivity)getActivity()).setSupportActionBar(tb);
+
+        mCookieText = view.findViewById(R.id.more_cookie_count);
+
         initData(view);
 
         if(mLoginFlag) {
@@ -113,7 +120,7 @@ public class FragmentMore extends Fragment implements LoginView {
                 long expiresAt = mOAuthLoginInstance.getExpiresAt(mContext);
                 String tokenType = mOAuthLoginInstance.getTokenType(mContext);
                 tryGetLoginResponse(accessToken);
-
+                Log.d("accesstoken",accessToken);
                 //redirectSignupActivity();
             }
             else{
@@ -128,6 +135,7 @@ public class FragmentMore extends Fragment implements LoginView {
         startActivity(intent);
         getActivity().finish();
     }
+
 
 
     public void tryGetLoginResponse(String accessToken){
@@ -163,6 +171,7 @@ public class FragmentMore extends Fragment implements LoginView {
         } catch (UnsupportedEncodingException | JSONException e) {
             e.printStackTrace();
         }
+        tryGetMore();
 
         mLoginFlag=true;
             mFrameLayout = view.findViewById(R.id.more_frame_login);
@@ -182,4 +191,19 @@ public class FragmentMore extends Fragment implements LoginView {
     }
 
 
+    public void tryGetMore(){
+        final FragmentMoreService fragmentMoreService = new FragmentMoreService(this);
+        fragmentMoreService.getMore();
+    }
+
+
+    @Override
+    public void validateSuccessMore(MoreResult moreResult) {
+        mCookieText.setText(Integer.toString(moreResult.getCookieCount())+"개");
+    }
+
+    @Override
+    public void validateFailureMore(String message) {
+
+    }
 }

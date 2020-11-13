@@ -1,27 +1,27 @@
 /*
 package com.softsquared.naverwebtoon.src.detail;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+        import androidx.appcompat.app.AppCompatActivity;
+        import androidx.recyclerview.widget.LinearLayoutManager;
+        import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.widget.ImageView;
-import android.widget.TextView;
+        import android.content.Context;
+        import android.content.Intent;
+        import android.os.Bundle;
+        import android.util.Log;
+        import android.widget.ImageView;
+        import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
-import com.softsquared.naverwebtoon.R;
-import com.softsquared.naverwebtoon.src.main.fragmentdetail.adapters.DetailAdapter;
-import com.softsquared.naverwebtoon.src.detail.interfaces.DetailActivityView;
-import com.softsquared.naverwebtoon.src.detail.models.DetailEpisodeListResult;
-import com.softsquared.naverwebtoon.src.detail.models.DetailResult;
+        import com.bumptech.glide.Glide;
+        import com.bumptech.glide.RequestManager;
+        import com.softsquared.naverwebtoon.R;
+        import com.softsquared.naverwebtoon.src.main.fragmentdetail.adapters.DetailAdapter;
+        import com.softsquared.naverwebtoon.src.detail.interfaces.DetailActivityView;
+        import com.softsquared.naverwebtoon.src.detail.models.DetailEpisodeListResult;
+        import com.softsquared.naverwebtoon.src.detail.models.DetailResult;
 
-import java.util.ArrayList;
-import java.util.List;
+        import java.util.ArrayList;
+        import java.util.List;
 
 public class DetailActivity extends AppCompatActivity implements DetailActivityView {
     private ArrayList<DetailEpisodeListResult> mDetailEpisodeListResults = new ArrayList<>();
@@ -53,11 +53,11 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityV
         tryGetDetail(idx);
         tryGetDetailEpisodeList(idx);
 
-         iv = findViewById(R.id.detail_image);
-         title = findViewById(R.id.detail_title);
-         author = findViewById(R.id.detail_author);
-         weekday = findViewById(R.id.detail_weekday);
-         story = findViewById(R.id.detail_story);
+        iv = findViewById(R.id.detail_image);
+        title = findViewById(R.id.detail_title);
+        author = findViewById(R.id.detail_author);
+        weekday = findViewById(R.id.detail_weekday);
+        story = findViewById(R.id.detail_story);
 
 
     }
@@ -105,4 +105,5 @@ public class DetailActivity extends AppCompatActivity implements DetailActivityV
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
-}*/
+}
+*/
