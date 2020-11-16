@@ -31,4 +31,17 @@
         <item name="android:textSize">11sp</item>
     </style>
 
+    <style name="topbar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:itemBackground">@color/toolbar_black</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+        <item name="actionOverflowButtonStyle">@style/AppTheme.OverFlow</item>
+    </style>
+
+    <style name="AppTheme.OverFlow" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:tint">@color/white</item>
+    </style>
+
+
 </resources>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".src.comment.CommentActivity">
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/comment_topbar"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/toolbar_black"
+        app:popupTheme="@style/topbar"
+        android:theme="@style/topbar"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/comment_back"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/watch_topback" />
+
+            <TextView
+                android:id="@+id/comment_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="10dp"
+                android:text="댓글 7,176"
+                android:textColor="@color/white"
+                android:textSize="15dp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/comment_refresh"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/comment_refresh"
+                android:layout_marginRight="10dp"
+                />
+
+        </LinearLayout>
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/comment_tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff"
+            app:tabBackground="@drawable/tab_background"
+            app:tabMode="fixed"
+            app:tabSelectedTextColor="#ffffff"
+            app:tabTextColor="#000000"
+            app:tabRippleColor="@null"
+            />
+
+    </LinearLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/comment_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="530dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+    <EditText
+        android:id="@+id/comment_add_comment"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:hint="댓글을 입력해주세요 :)"
+        android:textSize="15dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:background="@null"
+        android:padding="10dp"
+        />
+
+
+        <TextView
+            android:id="@+id/comment_add_comment_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="등록"
+            android:textSize="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

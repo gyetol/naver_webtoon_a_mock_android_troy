@@ -5,6 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class WatchDetail {
 
+
     @SerializedName("title")
     @Expose
     private String title;
@@ -14,6 +15,9 @@ public class WatchDetail {
     @SerializedName("heart_count")
     @Expose
     private Integer heartCount;
+    @SerializedName("heart")
+    @Expose
+    private String heart;
 
     public String getTitle() {
         return title;
@@ -39,4 +43,13 @@ public class WatchDetail {
         this.heartCount = heartCount;
     }
 
+    public String getHeart() {
+        return heart;
+    }
+
+    public void setHeart(String heart) {
+        this.heart = heart;
+    }
+
 }
+

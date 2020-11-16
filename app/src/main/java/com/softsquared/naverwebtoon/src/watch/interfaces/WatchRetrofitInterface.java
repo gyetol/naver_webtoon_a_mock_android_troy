@@ -1,9 +1,11 @@
 package com.softsquared.naverwebtoon.src.watch.interfaces;
 
+import com.softsquared.naverwebtoon.src.watch.models.WatchHeartResponse;
 import com.softsquared.naverwebtoon.src.watch.models.WatchResponse;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -13,5 +15,10 @@ public interface WatchRetrofitInterface {
             @Path("episodeIdx") int episodeIdx,
             @Query("page") final int page,
             @Query("size") final int size
+    );
+
+    @POST("/episodes/{episodeIdx}/heart")
+    Call<WatchHeartResponse> pushHeart(
+            @Path("episodeIdx") int episodeIdx
     );
 }
