@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.softsquared.naverwebtoon.R;
 import com.softsquared.naverwebtoon.src.comment.adapters.CommentRecyclerViewAdapter;
 import com.softsquared.naverwebtoon.src.comment.interfaces.CommentActivityView;
+import com.softsquared.naverwebtoon.src.comment.models.CommentAddResponse;
+import com.softsquared.naverwebtoon.src.comment.models.CommentLikeResponse;
 import com.softsquared.naverwebtoon.src.comment.models.CommentResult;
 
 import java.util.ArrayList;
@@ -62,6 +64,16 @@ public class FragmentAllComment extends Fragment implements CommentActivityView 
         CommentRecyclerViewAdapter adapter = new CommentRecyclerViewAdapter(items,context,isBest);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void validateSuccessLike(CommentLikeResponse commentLikeResponse) {
+
+    }
+
+    @Override
+    public void validateSuccessAdd(CommentAddResponse commentAddResponse) {
+
     }
 
     @Override

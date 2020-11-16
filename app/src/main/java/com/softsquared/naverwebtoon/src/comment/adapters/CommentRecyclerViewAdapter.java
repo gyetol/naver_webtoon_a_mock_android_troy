@@ -76,6 +76,8 @@ public class CommentRecyclerViewAdapter extends RecyclerView.Adapter<CommentRecy
             down = itemView.findViewById(R.id.comment_down_count);
 
 
+
+
         }
 
     }

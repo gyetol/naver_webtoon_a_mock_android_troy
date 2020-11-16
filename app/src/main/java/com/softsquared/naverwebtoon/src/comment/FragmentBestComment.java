@@ -2,9 +2,12 @@ package com.softsquared.naverwebtoon.src.comment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,7 +18,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.softsquared.naverwebtoon.R;
 import com.softsquared.naverwebtoon.src.comment.adapters.CommentRecyclerViewAdapter;
 import com.softsquared.naverwebtoon.src.comment.interfaces.CommentActivityView;
+import com.softsquared.naverwebtoon.src.comment.models.CommentAddResponse;
+import com.softsquared.naverwebtoon.src.comment.models.CommentLikeResponse;
 import com.softsquared.naverwebtoon.src.comment.models.CommentResult;
+import com.softsquared.naverwebtoon.src.comment.models.RequestCommentAdd;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +33,7 @@ public class FragmentBestComment extends Fragment implements CommentActivityView
     Context context = null;
     CommentRecyclerViewAdapter adapter = null;
     boolean isBest=true;
+    String content1;
 
     public FragmentBestComment(){}
 
@@ -48,12 +55,28 @@ public class FragmentBestComment extends Fragment implements CommentActivityView
         adapter = new CommentRecyclerViewAdapter(items,context,isBest);
         recyclerView.setAdapter(adapter);
         tryGetCommentList();
+
+        ((CommentActivity)getActivity()).mAddBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               content1= ((CommentActivity)getActivity()).mEditText.getText().toString();
+               tryGetCommentAdd();
+            }
+        });
+
+
         return view;
     }
 
     public void tryGetCommentList(){
         final FragmentBestCommentService fragmentBestCommentService = new FragmentBestCommentService(this,7);
         fragmentBestCommentService.getCommentList();
+    }
+
+    public void tryGetCommentAdd(){
+        final CommentAddService commentAddService = new CommentAddService(this,7,new RequestCommentAdd(content1));
+        commentAddService.AddComment();
+
     }
 
     @Override
@@ -66,7 +89,22 @@ public class FragmentBestComment extends Fragment implements CommentActivityView
     }
 
     @Override
+    public void validateSuccessLike(CommentLikeResponse commentLikeResponse) {
+
+    }
+
+    @Override
+    public void validateSuccessAdd(CommentAddResponse commentAddResponse) {
+        CommentRecyclerViewAdapter adapter = new CommentRecyclerViewAdapter(items,context,isBest);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        Toast.makeText(getContext(),"댓글 달기 성공",Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void validateFailure(String message) {
 
     }
+
+
 }

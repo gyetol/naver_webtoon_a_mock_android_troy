@@ -3,8 +3,12 @@ package com.softsquared.naverwebtoon.src.comment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.softsquared.naverwebtoon.R;
@@ -14,12 +18,21 @@ public class CommentActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
     private ViewPager mViewPager;
     private CommentPagerAdapter mCommentPagerAdapter;
+    EditText mEditText;
+    TextView mTextviewBtn;
+    String comments;
+    int idx;
+    TextView mAddBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comment);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+        mAddBtn = findViewById(R.id.comment_add_comment_btn);
+
+        Intent intent = getIntent();
+        idx = intent.getExtras().getInt("고른에피소드");
 
         mTabLayout = findViewById(R.id.comment_tablayout);
 
@@ -48,6 +61,10 @@ public class CommentActivity extends AppCompatActivity {
                 mViewPager.setCurrentItem(tab.getPosition());
             }
         });
+
+        mEditText = findViewById(R.id.comment_add_comment);
+        mTextviewBtn = findViewById(R.id.comment_add_comment_btn);
+
 
     }
 }
