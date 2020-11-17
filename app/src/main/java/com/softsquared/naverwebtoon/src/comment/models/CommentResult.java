@@ -5,6 +5,9 @@ import com.google.gson.annotations.SerializedName;
 
 public class CommentResult {
 
+    @SerializedName("idx")
+    @Expose
+    private Integer idx;
     @SerializedName("nick")
     @Expose
     private String nick;
@@ -20,6 +23,14 @@ public class CommentResult {
     @SerializedName("dislike_count")
     @Expose
     private Integer dislikeCount;
+
+    public Integer getIdx() {
+        return idx;
+    }
+
+    public void setIdx(Integer idx) {
+        this.idx = idx;
+    }
 
     public String getNick() {
         return nick;

@@ -28,18 +28,20 @@ import java.util.List;
 
 public class FragmentBestComment extends Fragment implements CommentActivityView {
 
-    private ArrayList<CommentResult> items = new ArrayList<>();
+   ArrayList<CommentResult> items ;
     RecyclerView recyclerView = null;
     Context context = null;
-    CommentRecyclerViewAdapter adapter = null;
+    CommentRecyclerViewAdapter adapter;
     boolean isBest=true;
     String content1;
+    int idx;
 
     public FragmentBestComment(){}
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        idx = ((CommentActivity)getActivity()).idx;
     }
 
     @Nullable
@@ -52,14 +54,15 @@ public class FragmentBestComment extends Fragment implements CommentActivityView
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(context);
         recyclerView.setLayoutManager(layoutManager);
-        adapter = new CommentRecyclerViewAdapter(items,context,isBest);
-        recyclerView.setAdapter(adapter);
+       // CommentRecyclerViewAdapter adapter = new CommentRecyclerViewAdapter(items,context,isBest);
+       //recyclerView.setAdapter(adapter);
         tryGetCommentList();
 
         ((CommentActivity)getActivity()).mAddBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                content1= ((CommentActivity)getActivity()).mEditText.getText().toString();
+                ((CommentActivity)getActivity()).mEditText.setText("");
                tryGetCommentAdd();
             }
         });
@@ -69,12 +72,12 @@ public class FragmentBestComment extends Fragment implements CommentActivityView
     }
 
     public void tryGetCommentList(){
-        final FragmentBestCommentService fragmentBestCommentService = new FragmentBestCommentService(this,7);
+        final FragmentBestCommentService fragmentBestCommentService = new FragmentBestCommentService(this,idx);
         fragmentBestCommentService.getCommentList();
     }
 
     public void tryGetCommentAdd(){
-        final CommentAddService commentAddService = new CommentAddService(this,7,new RequestCommentAdd(content1));
+        final CommentAddService commentAddService = new CommentAddService(this,idx,new RequestCommentAdd(content1));
         commentAddService.AddComment();
 
     }
@@ -82,8 +85,8 @@ public class FragmentBestComment extends Fragment implements CommentActivityView
     @Override
     public void validateSuccess(List<CommentResult> commentResults) {
         items = (ArrayList<CommentResult>)commentResults;
-
-        CommentRecyclerViewAdapter adapter = new CommentRecyclerViewAdapter(items,context,isBest);
+        Log.d("recycler","아이템넣어주기best");
+        adapter = new CommentRecyclerViewAdapter(items,context,isBest);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
     }
@@ -95,7 +98,7 @@ public class FragmentBestComment extends Fragment implements CommentActivityView
 
     @Override
     public void validateSuccessAdd(CommentAddResponse commentAddResponse) {
-        CommentRecyclerViewAdapter adapter = new CommentRecyclerViewAdapter(items,context,isBest);
+        adapter = new CommentRecyclerViewAdapter(items,context,isBest);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         Toast.makeText(getContext(),"댓글 달기 성공",Toast.LENGTH_SHORT).show();

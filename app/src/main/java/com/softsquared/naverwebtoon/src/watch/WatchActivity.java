@@ -5,6 +5,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.widget.NestedScrollView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -44,6 +46,7 @@ public class WatchActivity extends AppCompatActivity implements WatchActivityVie
     RequestManager mGlideRequestManager;
     LinearLayout mNextEpisode;
     ScrollView mScrollview;
+    NestedScrollView mNestedScrollview;
     ImageView mNextEpisodeImage;
     TextView mNextEpisodeText;
     TextView mStarScore;
@@ -59,7 +62,11 @@ public class WatchActivity extends AppCompatActivity implements WatchActivityVie
     String isHeart;
     boolean heartCheck;
     int idx;
+    int nextidx;
     int heartCnt;
+    ImageView ivFace;
+    RecyclerView mWatchRecyclerView;
+    LinearLayout mWatchFake;
 
 
 
@@ -69,10 +76,13 @@ public class WatchActivity extends AppCompatActivity implements WatchActivityVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watch);
         mNextEpisode = findViewById(R.id.watch_next_episode);
-        mScrollview = findViewById(R.id.watch_scrollview);
+        //mScrollview = findViewById(R.id.watch_scrollview);
+        mNestedScrollview = findViewById(R.id.watch_scrollview);
         mNextEpisodeText= findViewById(R.id.watch_next_episode_count);
         mNextEpisodeImage = findViewById(R.id.watch_episode_nextimage);
         mStarScore= findViewById(R.id.watch_starscore);
+        mWatchRecyclerView = findViewById(R.id.watch_recycler);
+        //mWatchFake = findViewById(R.id.watch_fake);
 
         mGlideRequestManager = Glide.with(getApplicationContext());
         mWatchEpisodes = new ArrayList<>();
@@ -87,7 +97,7 @@ public class WatchActivity extends AppCompatActivity implements WatchActivityVie
         //툴바
         mTopbar = findViewById(R.id.watch_topbar);
         mBottombar = findViewById(R.id.watch_bottombar);
-        mTopbarBack = findViewById(R.id.watch_back);
+        mTopbarBack = findViewById(R.id.watch_bac1);
         //mTopbarThreedot = findViewById(R.id.watch_threedot_white);
         setSupportActionBar(mTopbar);
         ActionBar ab = getSupportActionBar();
@@ -96,6 +106,70 @@ public class WatchActivity extends AppCompatActivity implements WatchActivityVie
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+
+        ivFace = findViewById(R.id.iv_face);
+        ivFace.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mTopbar.getVisibility()==View.VISIBLE){
+                    mTopbar.setVisibility(View.GONE);
+                    mBottombar.setVisibility(View.GONE);
+                }
+                else if(mTopbar.getVisibility()==View.GONE){
+                    mTopbar.setVisibility(View.VISIBLE);
+                    mBottombar.setVisibility(View.VISIBLE);
+                }
+            }
+        });
+
+//        mWatchRecyclerView.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//            @Override
+//            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                if(!v.canScrollVertically(-1)){
+//                    mTopbar.setVisibility(View.VISIBLE);
+//                }
+//                else if(scrollY > oldScrollY || scrollY < oldScrollY){
+//                    mTopbar.setVisibility(View.GONE);
+//                }
+//                if(!v.canScrollVertically(1)){
+//                    mTopbar.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
+
+//        mNestedScrollview.setOnScrollChangeListener(new View.OnScrollChangeListener() {
+//            @Override
+//            public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+//                if (scrollY == 0) {
+//                   mTopbar.setVisibility(View.VISIBLE);
+//                    mBottombar.setVisibility(View.VISIBLE);
+//                   // mWatchFake.setVisibility(View.VISIBLE);
+//                } else if (scrollY > oldScrollY || scrollY < oldScrollY) {
+//                   mTopbar.setVisibility(View.GONE);
+//                    mBottombar.setVisibility(View.GONE);
+//                   // mWatchFake.setVisibility(View.GONE);
+//                }
+//                if(!v.canScrollVertically(1)){
+//                    mTopbar.setVisibility(View.VISIBLE);
+//                    mBottombar.setVisibility(View.VISIBLE);
+//                   // mWatchFake.setVisibility(View.VISIBLE);
+//                }
+//            }
+//        });
+
+        mWatchRecyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(mTopbar.getVisibility()==View.VISIBLE){
+                    mTopbar.setVisibility(View.GONE);
+                    mBottombar.setVisibility(View.GONE);
+                }
+                else if(mTopbar.getVisibility()==View.GONE){
+                    mTopbar.setVisibility(View.VISIBLE);
+                    mBottombar.setVisibility(View.VISIBLE);
+                }
             }
         });
 
@@ -118,19 +192,19 @@ public class WatchActivity extends AppCompatActivity implements WatchActivityVie
 
 
         Intent intent = getIntent();
-       idx = intent.getExtras().getInt("고른에피소드");
+        idx = intent.getExtras().getInt("고른에피소드");
         mNextEpisode.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               int nextidx=idx+1;
+                nextidx=idx+1;
                 tryGetWatchEpisodes(nextidx);
                 mNextEpisodeText.setText("3화");
                 mNextEpisodeImage.setImageResource(R.drawable.epi3);
                 mStarScore.setText("9.93");
-                mScrollview.post(new Runnable() {
+                mNestedScrollview.post(new Runnable() {
                     @Override
                     public void run() {
-                        mScrollview.scrollTo(0,0);
+                        mNestedScrollview.scrollTo(0,0);
                     }
                 });
             }
@@ -175,18 +249,18 @@ public class WatchActivity extends AppCompatActivity implements WatchActivityVie
     public void validateSuccess(WatchResult watchResult) {
         mWatchResult=watchResult;
         Log.d("watch",mWatchResult.getEpisode().get(0).getContents());
-         mWatchEpisodes=(ArrayList<WatchEpisode>)mWatchResult.getEpisode();
-         WatchAdapter adapter = new WatchAdapter(mWatchEpisodes,mContext,mGlideRequestManager);
-         recyclerView.setAdapter(adapter);
-         adapter.notifyDataSetChanged();
-         heartCnt = mWatchResult.getDetail().getHeartCount();
+        mWatchEpisodes=(ArrayList<WatchEpisode>)mWatchResult.getEpisode();
+        WatchAdapter adapter = new WatchAdapter(mWatchEpisodes,mContext,mGlideRequestManager);
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+        heartCnt = mWatchResult.getDetail().getHeartCount();
         mHeartText.setText(Integer.toString(mWatchResult.getDetail().getHeartCount()));
         mReplyText.setText(Integer.toString(mWatchResult.getDetail().getCommentCount()));
         if(mWatchResult.getDetail().getHeart().equals("Y")){
-            mHeartImage.setImageResource(R.drawable.watch_bottom_redheart);
+            mHeartImage.setImageResource(R.drawable.watch_heart_red);
         }
         else if(mWatchResult.getDetail().getHeart().equals("N")){
-            mHeartImage.setImageResource(R.drawable.watch_bottom_heart);
+            mHeartImage.setImageResource(R.drawable.watch_heart);
         }
     }
 
@@ -200,14 +274,14 @@ public class WatchActivity extends AppCompatActivity implements WatchActivityVie
 
         isHeart = watchHeartResponse.getMessage();
         if(isHeart.equals("유저 하트누르기 성공") || isHeart.equals("유저 하트다시 누르기 성공")){
-            mHeartImage.setImageResource(R.drawable.watch_bottom_redheart);
+            mHeartImage.setImageResource(R.drawable.watch_heart_red);
             heartCnt++;
             mHeartText.setText(Integer.toString(heartCnt));
             Log.d("heart","하트 누르기");
 
         }
         else if(isHeart.equals("유저 하트취소 성공")){
-            mHeartImage.setImageResource(R.drawable.watch_bottom_heart);
+            mHeartImage.setImageResource(R.drawable.watch_heart);
             heartCnt--;
             mHeartText.setText(Integer.toString(heartCnt));
             Log.d("heart","하트 취소");
@@ -217,7 +291,7 @@ public class WatchActivity extends AppCompatActivity implements WatchActivityVie
 
     }
 
-   @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_watch_topbar,menu);

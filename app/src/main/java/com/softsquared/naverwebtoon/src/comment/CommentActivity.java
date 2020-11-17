@@ -1,18 +1,31 @@
 package com.softsquared.naverwebtoon.src.comment;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 import com.softsquared.naverwebtoon.R;
 import com.softsquared.naverwebtoon.src.comment.adapters.CommentPagerAdapter;
+import com.softsquared.naverwebtoon.src.comment.adapters.CommentRecyclerViewAdapter;
+import com.softsquared.naverwebtoon.src.comment.interfaces.CommentActivityView;
+import com.softsquared.naverwebtoon.src.comment.models.CommentAddResponse;
+import com.softsquared.naverwebtoon.src.comment.models.CommentLikeResponse;
+import com.softsquared.naverwebtoon.src.comment.models.CommentResult;
+import com.softsquared.naverwebtoon.src.comment.models.RequestCommentAdd;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CommentActivity extends AppCompatActivity {
     private TabLayout mTabLayout;
@@ -24,6 +37,7 @@ public class CommentActivity extends AppCompatActivity {
     int idx;
     TextView mAddBtn;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +46,8 @@ public class CommentActivity extends AppCompatActivity {
         mAddBtn = findViewById(R.id.comment_add_comment_btn);
 
         Intent intent = getIntent();
-        idx = intent.getExtras().getInt("고른에피소드");
+        idx = intent.getExtras().getInt("고른 에피소드");
+        Log.d("recycler",idx+"");
 
         mTabLayout = findViewById(R.id.comment_tablayout);
 
@@ -67,4 +82,8 @@ public class CommentActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
 }

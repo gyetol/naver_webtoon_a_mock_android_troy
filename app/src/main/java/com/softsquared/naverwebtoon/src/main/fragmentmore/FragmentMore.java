@@ -63,6 +63,7 @@ public class FragmentMore extends Fragment implements LoginView, MoreFragmentVie
     TextView mCookieText;
 
 
+
     //네이버로그인
     private static String OAUTH_CLIENT_ID ="TsRlPAeR8cojfwcDKvbG";
     private static String OAUTH_CLIENT_SECRET="JArPgUUAvz";
@@ -92,7 +93,7 @@ public class FragmentMore extends Fragment implements LoginView, MoreFragmentVie
             mFrameLayout.setVisibility(View.GONE);
             LinearLayout linearLayout = view.findViewById(R.id.more_info_layout);
             linearLayout.setVisibility(View.VISIBLE);
-
+            tryGetMore();
         }
 
 

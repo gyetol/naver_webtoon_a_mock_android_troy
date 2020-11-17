@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity  {
     private FragmentMypage fragmentMypage = new FragmentMypage();
     private FragmentMore fragmentMore = new FragmentMore();
     private FragmentDetail fragmentDetail = new FragmentDetail();
+    private Menu mNavMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,8 @@ public class MainActivity extends AppCompatActivity  {
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigationView);
         bottomNavigationView.setItemIconTintList(null);
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
+
+        mNavMenu = bottomNavigationView.getMenu();
     }
 
     public void replaceFragment(Fragment fragment){
@@ -55,22 +59,52 @@ public class MainActivity extends AppCompatActivity  {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
             FragmentTransaction transaction =fragmentManager.beginTransaction();
+            MenuItem item1 = mNavMenu.getItem(0);
+            MenuItem item2 = mNavMenu.getItem(1);
+            MenuItem item3 = mNavMenu.getItem(2);
+            MenuItem item4 = mNavMenu.getItem(3);
+            MenuItem item5 = mNavMenu.getItem(4);
 
             switch(menuItem.getItemId()){
                 case R.id.bottom_navigation_view_webtoon_1:
                     transaction.replace(R.id.frameLayout,fragmentWebtoon).commitAllowingStateLoss();
+                    menuItem.setIcon(getDrawable(R.drawable.item_1_b));
+                    item2.setIcon(getDrawable(R.drawable.item_2));
+                    item3.setIcon(getDrawable(R.drawable.item_3));
+                    item4.setIcon(getDrawable(R.drawable.item_4));
+                    item5.setIcon(getDrawable(R.drawable.item_5));
                     break;
                 case R.id.bottom_navigation_view_recommendation_2:
                     transaction.replace(R.id.frameLayout,fragmentRecommendation).commitAllowingStateLoss();
+                    menuItem.setIcon(getDrawable(R.drawable.item_2_b));
+                    item1.setIcon(getDrawable(R.drawable.item_1));
+                    item3.setIcon(getDrawable(R.drawable.item_3));
+                    item4.setIcon(getDrawable(R.drawable.item_4));
+                    item5.setIcon(getDrawable(R.drawable.item_5));
                     break;
                 case R.id.bottom_navigation_view_bestchallenge_3:
                     transaction.replace(R.id.frameLayout,fragmentBestchallenge).commitAllowingStateLoss();
+                    menuItem.setIcon(getDrawable(R.drawable.item_3_b));
+                    item1.setIcon(getDrawable(R.drawable.item_1));
+                    item2.setIcon(getDrawable(R.drawable.item_2));
+                    item4.setIcon(getDrawable(R.drawable.item_4));
+                    item5.setIcon(getDrawable(R.drawable.item_5));
                     break;
                 case R.id.bottom_navigation_view_my_4:
                     transaction.replace(R.id.frameLayout,fragmentMypage).commitAllowingStateLoss();
+                    menuItem.setIcon(getDrawable(R.drawable.item_4_b));
+                    item1.setIcon(getDrawable(R.drawable.item_1));
+                    item2.setIcon(getDrawable(R.drawable.item_2));
+                    item3.setIcon(getDrawable(R.drawable.item_3));
+                    item5.setIcon(getDrawable(R.drawable.item_5));
                     break;
                 case R.id.bottom_navigation_view_more_5:
                     transaction.replace(R.id.frameLayout,fragmentMore).commitAllowingStateLoss();
+                    menuItem.setIcon(getDrawable(R.drawable.item_5_b));
+                    item1.setIcon(getDrawable(R.drawable.item_1));
+                    item2.setIcon(getDrawable(R.drawable.item_2));
+                    item3.setIcon(getDrawable(R.drawable.item_3));
+                    item4.setIcon(getDrawable(R.drawable.item_4));
                     break;
             }
             return true;
