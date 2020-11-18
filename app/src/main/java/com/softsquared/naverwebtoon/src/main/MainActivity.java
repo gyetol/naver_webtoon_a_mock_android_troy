@@ -1,6 +1,7 @@
 package com.softsquared.naverwebtoon.src.main;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -8,6 +9,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -36,7 +38,8 @@ public class MainActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Intent intent = new Intent(this,LoadingActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent,0);
+
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.frameLayout, fragmentWebtoon).commitAllowingStateLoss();
@@ -46,6 +49,25 @@ public class MainActivity extends AppCompatActivity  {
         bottomNavigationView.setOnNavigationItemSelectedListener(new ItemSelectedListener());
 
         mNavMenu = bottomNavigationView.getMenu();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==0){
+            if(resultCode==RESULT_OK){
+                Log.d("autologin","로그인넘어옴");
+                Bundle bundle = new Bundle();
+                bundle.putString("로그인여부","로그인성공");
+                fragmentMore.setArguments(bundle);
+            }
+            else{
+                Log.d("autologin","로그인안넘어옴");
+                Bundle bundle = new Bundle();
+                bundle.putString("로그인여부","로그인실패");
+                fragmentMore.setArguments(bundle);
+            }
+        }
     }
 
     public void replaceFragment(Fragment fragment){

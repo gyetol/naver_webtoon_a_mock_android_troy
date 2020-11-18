@@ -61,6 +61,8 @@ public class FragmentMore extends Fragment implements LoginView, MoreFragmentVie
     String accessToken;
     String mNickname;
     TextView mCookieText;
+    String isLogin;
+    TextView nickname;
 
 
 
@@ -78,16 +80,29 @@ public class FragmentMore extends Fragment implements LoginView, MoreFragmentVie
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_more,container,false);
         mContext = view.getContext();
+        nickname= view.findViewById(R.id.more_nickname);
         tb = (Toolbar)view.findViewById(R.id.app_toolbar);
         tb.setTitle("더보기");
         ((AppCompatActivity)getActivity()).setSupportActionBar(tb);
+
+        Bundle bundle = getArguments();
+        if(bundle!=null) {
+            isLogin = bundle.getString("로그인여부");
+
+            if (isLogin.equals("로그인성공")) {
+                mLoginFlag = true;
+            } else if(isLogin.equals("로그인실패")) {
+                //mLoginFlag = false;
+            }
+        }
+
 
         mCookieText = view.findViewById(R.id.more_cookie_count);
 
         initData(view);
 
         if(mLoginFlag) {
-            TextView nickname = view.findViewById(R.id.more_nickname);
+            //TextView nickname = view.findViewById(R.id.more_nickname);
             nickname.setText(mNickname);
             mFrameLayout = view.findViewById(R.id.more_frame_login);
             mFrameLayout.setVisibility(View.GONE);
@@ -157,7 +172,7 @@ public class FragmentMore extends Fragment implements LoginView, MoreFragmentVie
             e.printStackTrace();
         }
 
-        TextView nickname = view.findViewById(R.id.more_nickname);
+        //nickname = view.findViewById(R.id.more_nickname);
 
         //jwt 디코드 후 제이슨파싱
         String[] split = loginResult.getJwt().split("\\.");
@@ -201,6 +216,7 @@ public class FragmentMore extends Fragment implements LoginView, MoreFragmentVie
     @Override
     public void validateSuccessMore(MoreResult moreResult) {
         mCookieText.setText(Integer.toString(moreResult.getCookieCount())+"개");
+        nickname.setText(moreResult.getNick()+"님");
     }
 
     @Override

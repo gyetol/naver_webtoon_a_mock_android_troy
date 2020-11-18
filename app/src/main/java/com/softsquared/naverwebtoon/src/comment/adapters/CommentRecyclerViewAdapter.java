@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.softsquared.naverwebtoon.R;
 import com.softsquared.naverwebtoon.src.comment.CommentActivity;
 import com.softsquared.naverwebtoon.src.comment.FragmentAllComment;
+import com.softsquared.naverwebtoon.src.comment.interfaces.OnItemClick;
 import com.softsquared.naverwebtoon.src.comment.models.CommentResult;
 import com.softsquared.naverwebtoon.src.comment.models.RequestCommentState;
 
@@ -32,16 +33,18 @@ public class CommentRecyclerViewAdapter extends RecyclerView.Adapter<CommentRecy
     FragmentTransaction transaction;
     FragmentManager fragmentManager;
     //FragmentAllComment fragmentAllComment;
+    private OnItemClick mCallback;
 
     public interface OnItemClickListener {
         public void onItemClick(View view, int position, boolean isUser);
     }
 
-    public CommentRecyclerViewAdapter(ArrayList<CommentResult> list, Context mContext, boolean isBest) {
+    public CommentRecyclerViewAdapter(ArrayList<CommentResult> list, Context mContext, boolean isBest, OnItemClick listener) {
         this.list = list;
         this.mContext = mContext;
         this.isBest = isBest;
         mInflater = LayoutInflater.from(mContext);
+        mCallback = listener;
         //fragmentManager =((AppCompatActivity)mContext).getSupportFragmentManager();
         //fragmentAllComment = new FragmentAllComment();
         Log.d("recycler", "생성자");
@@ -101,10 +104,11 @@ public class CommentRecyclerViewAdapter extends RecyclerView.Adapter<CommentRecy
                         pickedCommentIdx = list.get(pos).getIdx();  // 어떤 댓글의 좋아요 버튼인지 idx에 저장
                         Log.d("picked",""+pickedCommentIdx);
                     }
+                    mCallback.onClick(pickedCommentIdx,true);
                     //////////////////////////////////// 어뎁터에서 프래그먼트의 메소드(tryGetCommentLike)를 쓰기위해 아래처럼 new해줬습니다.
-                   FragmentAllComment fragmentAllComment = new FragmentAllComment();
-                   fragmentAllComment.tryGetCommentLike(pickedCommentIdx,new RequestCommentState("L")); // 레트로핏통신, post로 body에 "L"를 보냄
-                    notifyItemChanged(pos);
+                   //FragmentAllComment fragmentAllComment = new FragmentAllComment();
+                  // fragmentAllComment.tryGetCommentLike(pickedCommentIdx,new RequestCommentState("L")); // 레트로핏통신, post로 body에 "L"를 보냄
+                   // notifyItemChanged(pos);
 
                }
            });
@@ -117,9 +121,10 @@ public class CommentRecyclerViewAdapter extends RecyclerView.Adapter<CommentRecy
                    if(pos != RecyclerView.NO_POSITION){
                        pickedCommentIdx = list.get(pos).getIdx();
                    }
-                   FragmentAllComment fragmentAllComment = new FragmentAllComment();
-                   fragmentAllComment.tryGetCommentLike(pickedCommentIdx,new RequestCommentState("D"));
-                   notifyItemChanged(pos);
+                   mCallback.onClick(pickedCommentIdx,false);
+                   //FragmentAllComment fragmentAllComment = new FragmentAllComment();
+                   //fragmentAllComment.tryGetCommentLike(pickedCommentIdx,new RequestCommentState("D"));
+                   //notifyItemChanged(pos);
 
                }
            });

@@ -2,14 +2,23 @@ package com.softsquared.naverwebtoon.src.main;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.softsquared.naverwebtoon.R;
+import com.softsquared.naverwebtoon.src.main.fragmentmore.FragmentMore;
+import com.softsquared.naverwebtoon.src.main.interfaces.AutoLoginView;
+import com.softsquared.naverwebtoon.src.main.models.AutoLoginResponse;
+import com.softsquared.naverwebtoon.src.main.models.AutoLoginResult;
 
-public class LoadingActivity extends AppCompatActivity {
+public class LoadingActivity extends AppCompatActivity implements AutoLoginView {
+    boolean isLogin;
+    FragmentMore fragmentMore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +30,7 @@ public class LoadingActivity extends AppCompatActivity {
             getWindow().setStatusBarColor(Color.parseColor("#00D463"));
             getWindow().setNavigationBarColor(Color.parseColor("#00D463"));
         }
+        tryGetAutoLogin();
         startLoading();
     }
 
@@ -32,5 +42,31 @@ public class LoadingActivity extends AppCompatActivity {
                 finish();
             }
         }, 4000);
+    }
+
+    public void tryGetAutoLogin(){
+        final AutoLoginService autoLoginService = new AutoLoginService(this);
+        autoLoginService.getAutoLoginResponse();
+    }
+
+    @Override
+    public void validateSuccess(AutoLoginResponse autoLoginResponse) {
+
+        if(autoLoginResponse.getIsSuccess()) {
+            Log.d("autologin", autoLoginResponse.getResult().getJwt());
+            Toast.makeText(getApplicationContext(),"자동로그인 성공",Toast.LENGTH_SHORT).show();
+            setResult(RESULT_OK);
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"자동로그인되지 않았습니다",Toast.LENGTH_SHORT).show();
+            setResult(RESULT_CANCELED);
+        }
+
+
+    }
+
+    @Override
+    public void validateFailure(String message) {
+
     }
 }

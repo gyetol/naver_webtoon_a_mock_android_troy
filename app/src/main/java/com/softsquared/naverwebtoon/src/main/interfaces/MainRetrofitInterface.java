@@ -1,5 +1,6 @@
 package com.softsquared.naverwebtoon.src.main.interfaces;
 
+import com.softsquared.naverwebtoon.src.main.models.AutoLoginResponse;
 import com.softsquared.naverwebtoon.src.main.models.LoginResponse;
 import com.softsquared.naverwebtoon.src.main.models.TopBannerResponse;
 import com.softsquared.naverwebtoon.src.main.models.WebtoonResponse;
@@ -23,4 +24,7 @@ public interface MainRetrofitInterface {
 
     @POST("/login")
     Call<LoginResponse> getLoginResponse(@Body String params);
+
+    @POST("/autologin")
+    Call<AutoLoginResponse> getAutoLoginResponse();
 }

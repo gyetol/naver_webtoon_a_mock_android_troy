@@ -288,7 +288,6 @@ public class WatchActivity extends AppCompatActivity implements WatchActivityVie
 
         }
 
-
     }
 
     @Override
